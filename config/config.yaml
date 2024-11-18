@@ -1,0 +1,14 @@
+jira:
+  base_url: "https://katherinevse.atlassian.net"
+  username: "${JIRA_USERNAME}"
+  api_token: "${JIRA_API_TOKEN}"
+
+telegram:
+  bot_token: "${TELEGRAM_BOT_TOKEN}"
+  chat_id: "${TELEGRAM_CHAT_ID}"
+
+project:
+  key: "KAN"
+
+scheduler:
+  interval: "1m"
