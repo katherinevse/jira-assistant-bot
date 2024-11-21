@@ -11,4 +11,4 @@ project:
   key: "KAN"
 
 scheduler:
-  interval: "1m"
+  interval: "30m"
