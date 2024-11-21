@@ -2,9 +2,10 @@ package usecase
 
 import (
 	"fmt"
-	"github.com/katheineevse/jira-assistant-bot/app/internal/dto"
-	"github.com/katheineevse/jira-assistant-bot/app/internal/jira"
-	"github.com/katheineevse/jira-assistant-bot/app/internal/telegram"
+	"github.com/katheineevse/jira-assistant-bot/internal/dto"
+	"github.com/katheineevse/jira-assistant-bot/internal/jira"
+	"github.com/katheineevse/jira-assistant-bot/internal/telegram"
+
 	"log"
 )
 
