@@ -30,13 +30,12 @@ func NewClient(cfg config.JiraConfig) *Client {
 
 // https://katherinevse.atlassian.net/rest/api/2/search?jql=project=KAN+AND+status%3D%22To+Do%22+AND+assignee+IS+EMPTY
 func (c *Client) GetUnassignedIssues(projectKey string, sinceHours int) ([]dto.Issue, error) {
-	//TODO брать из конфига
-	baseURL := "https://katherinevse.atlassian.net/rest/api/2/search"
-	query := "project=KAN AND status='To Do' AND assignee IS EMPTY"
 
+	query := fmt.Sprintf("project=%s AND status='To Do' AND assignee IS EMPTY", projectKey)
 	escapedQuery := url.QueryEscape(query)
-	url := fmt.Sprintf("%s?jql=%s", baseURL, escapedQuery)
+	url := fmt.Sprintf("%s/rest/api/2/search?jql=%s", c.BaseURL, escapedQuery)
 
+	fmt.Println("URLLLLLLLL", url)
 	req, err := http.NewRequest("GET", url, nil)
 	if err != nil {
 		return nil, fmt.Errorf("failed to create request: %w", err)
@@ -48,6 +47,7 @@ func (c *Client) GetUnassignedIssues(projectKey string, sinceHours int) ([]dto.I
 
 	fmt.Println("ЭТО БОТ ТОКЕН\n", c.APIToken)
 	//TODO убрать такую инициализацию клиента
+
 	client := &http.Client{
 		Timeout: 50 * time.Second,
 	}
