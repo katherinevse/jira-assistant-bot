@@ -1,6 +1,6 @@
 # Jira Assistant Bot
 
-**Jira Assistant Bot** — это бот для Telegram, который интегрируется с Jira и помогает отслеживать незакрепленные задачи, а также задачи, которые висят без статуса и не выполнены более недели. Он автоматически отправляет уведомления в чат Telegram о новых незакрепленных задачах и задачах, не имеющих статуса.
+**Jira Assistant Bot** — это сервис для Jira, который интегрируется с Telegram и помогает отслеживать незакрепленные задачи, а также задачи, которые висят без статуса и не выполнены более недели. Он автоматически отправляет уведомления в чат Telegram коллег о новых незакрепленных задачах и задачах, не имеющих статуса.
 
 ## Функциональность
 
@@ -28,13 +28,13 @@
    
 2. Переменные окружения:
    ```bash
-    export JIRA_USERNAME="your-jira-username"
-    export JIRA_API_TOKEN="your-jira-api-token"
-    export JIRA_BASE_URL="https://your-jira-instance-url"
-    export TELEGRAM_BOT_TOKEN="your-telegram-bot-token"
-    export TELEGRAM_CHAT_ID="your-telegram-chat-id"
-    export PROJECT_KEY="your-project-key"
-    export SCHEDULER_INTERVAL="30m"
+    JIRA_USERNAME="your-jira-username"
+    JIRA_API_TOKEN="your-jira-api-token"
+    JIRA_BASE_URL="https://your-jira-instance-url"
+    TELEGRAM_BOT_TOKEN="your-telegram-bot-token"
+    TELEGRAM_CHAT_ID="your-telegram-chat-id"
+    PROJECT_KEY="your-project-key"
+    SCHEDULER_INTERVAL="30m"
 
 
 ## Как это работает
