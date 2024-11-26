@@ -2,9 +2,9 @@ package config
 
 import (
 	"fmt"
-	"gopkg.in/yaml.v2"
-	"io/ioutil"
-	"path/filepath"
+	"github.com/joho/godotenv"
+	"log"
+	"os"
 )
 
 type Config struct {
@@ -33,21 +33,29 @@ type SchedulerConfig struct {
 	Interval string `yaml:"interval"`
 }
 
-func LoadConfig() (*Config, error) {
-	var config Config
-
-	configPath := filepath.Join("config", "config.yaml")
-
-	data, err := ioutil.ReadFile(configPath)
+func New() (*Config, error) {
+	err := godotenv.Load(".env")
 	if err != nil {
-		return nil, fmt.Errorf("error reading config file: %w", err)
+		log.Fatalf("Ошибка загрузки .env файла: %v", err)
+	} else {
+		fmt.Println("Файл .env успешно загружен")
 	}
 
-	// Разбор YAML в структуру Config
-	err = yaml.Unmarshal(data, &config)
-	if err != nil {
-		return nil, fmt.Errorf("error unmarshaling config: %w", err)
-	}
-
-	return &config, nil
+	return &Config{
+		JiraCfg: JiraConfig{
+			BaseURL:  os.Getenv("JIRA_BASE_URL"),
+			Username: os.Getenv("JIRA_USERNAME"),
+			APIToken: os.Getenv("JIRA_API_TOKEN"),
+		},
+		TgCfg: TgConfig{
+			BotToken: os.Getenv("TELEGRAM_BOT_TOKEN"),
+			ChatID:   os.Getenv("TELEGRAM_CHAT_ID"),
+		},
+		ProgCfg: ProjectConfig{
+			Key: os.Getenv("PROJECT_KEY"),
+		},
+		SchedulerCfg: SchedulerConfig{
+			Interval: os.Getenv("SCHEDULER_INTERVAL"),
+		},
+	}, nil
 }
